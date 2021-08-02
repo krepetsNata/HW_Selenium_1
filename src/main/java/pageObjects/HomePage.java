@@ -4,6 +4,7 @@ package pageObjects;
 import constants.Configuration;
 import constants.Constants;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -30,9 +31,9 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//ul[@class='main-nav__list']//a[contains(@class,'faq')]")
     private WebElement FAQPageButton;
 
-
     public SignInPage clickSignInButton() {
-        signInButton.click();
+        waitForPageLoadComplete(25);
+        waitElementToBeClickable(10,signInButton).click();
         LOG.info("'Sign in' button clicked");
         return new SignInPage();
     }

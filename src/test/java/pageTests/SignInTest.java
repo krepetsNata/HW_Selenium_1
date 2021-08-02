@@ -20,12 +20,12 @@ public class SignInTest extends BaseTest {
 
     }
 
-    @Test(description = "Verify that special characters and digits are allowed")
+    @Test(description = "Verify that special characters (%+-_) and digits are allowed")
     public void verifySpecCharsInEmail(){
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()
-                .enterEmail("azAZ_12!#$%^&=*@gmail.com")
+                .enterEmail("azAZ%+-_12@gmail.com")
                 .verifyContinueButtonEnabled();
     }
 }

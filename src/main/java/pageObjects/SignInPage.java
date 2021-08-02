@@ -43,7 +43,7 @@ public class SignInPage extends BasePage{
     }
 
     public HomePage clickSignInButton(){
-        signInButton.click();
+        waitElementToBeClickable(10,signInButton).click();
         LOG.info("Sign in button clicked.");
         return new HomePage();
     }

@@ -12,6 +12,8 @@ public class BaseTest extends DriverFactory {
     private Logger LOG = Logger.getLogger(BaseTest.class);
     private Test test;
 
+    //public static final String CHROME = Configuration.getProperty(Constants.CHROME_NAME.getNameConstInFile());
+
     @Parameters({"browserName"})
     @BeforeMethod(alwaysRun = true)
     //public void beforeMethod(@Optional(value = Configuration.getProperty(Constants.CHROME_NAME.getNameConstInFile())) final String browserName, Method method) {
