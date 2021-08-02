@@ -1,3 +1,5 @@
+package pageTests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginPageTest {
+public class HardCodedTest {
 
     @Test(description="Verify user is successfully logged in with appropriate credentials")
     public void verifyUserIsSuccessfullyLoggedIn(){

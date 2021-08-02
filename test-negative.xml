@@ -3,7 +3,7 @@
 <suite name="negative_tests">
     <test name="verifyInvalidData">
         <classes>
-            <class name="LoginPageTest">
+            <class name="pageTests.HardCodedTest">
                 <methods>
                     <include name="verifyUserIsLoggedInIncorrectPass" />
                 </methods>
