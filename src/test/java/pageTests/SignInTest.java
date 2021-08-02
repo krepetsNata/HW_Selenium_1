@@ -30,8 +30,17 @@ public class SignInTest extends BaseTest {
                 .verifyContinueButtonEnabled();
     }
 
-    @Test(dataProvider = "data_provider_inappropriate_email", dataProviderClass = DataProviderEmailData.class, description = "Verify count chars in email domain")
+    @Test(dataProvider = "data_provider_domainname", dataProviderClass = DataProviderEmailData.class, description = "Verify count chars in email domain")
     public void verifyDomainInEmail(String email){
+        new HomePage()
+                .proceedToHomePage()
+                .clickSignInButton()
+                .enterEmail(email)
+                .verifyContinueButtonEnabled();
+    }
+
+    @Test(dataProvider = "data_provider_inappropriate_email", dataProviderClass = DataProviderEmailData.class, description = "Verify count chars in email domain")
+    public void verifyInappropriateEmail(String email){
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()
