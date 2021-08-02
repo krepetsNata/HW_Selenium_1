@@ -1,5 +1,6 @@
 package pageTests;
 
+import dataProviders.DataProviderEmailData;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.SignInPage;
@@ -27,5 +28,14 @@ public class SignInTest extends BaseTest {
                 .clickSignInButton()
                 .enterEmail("azAZ%+-_12@gmail.com")
                 .verifyContinueButtonEnabled();
+    }
+
+    @Test(dataProvider = "data_provider_inappropriate_email", dataProviderClass = DataProviderEmailData.class, description = "Verify count chars in email domain")
+    public void verifyDomainInEmail(String email){
+        new HomePage()
+                .proceedToHomePage()
+                .clickSignInButton()
+                .enterEmail(email)
+                .verifyContinueButtonDisabled();
     }
 }

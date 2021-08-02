@@ -70,4 +70,10 @@ public class SignInPage extends BasePage{
         softAssert.assertTrue(isContinueButtonEnabled(),"Spec Chars is allowed");
         softAssert.assertAll();
     }
+
+    public void verifyContinueButtonDisabled(){
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertFalse(isContinueButtonEnabled(),"Email is inappropriate");
+        softAssert.assertAll();
+    }
 }
