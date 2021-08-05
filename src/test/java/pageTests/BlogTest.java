@@ -7,7 +7,7 @@ import pageObjects.HomePage;
 public class BlogTest extends BaseTest {
 
     @Test
-    public void verifyigLinks() {
+    public void verifyingLinks() {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()

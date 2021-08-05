@@ -21,6 +21,6 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void afterMethod(final Method method) {
         LOG.info(String.format("Test '%s' completed.", method.getName()));
-        //DriverFactory.quitDriver();
+        DriverFactory.quitDriver();
     }
 }

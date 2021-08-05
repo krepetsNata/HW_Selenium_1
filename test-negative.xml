@@ -5,9 +5,16 @@
         <classes>
             <class name="pageTests.HardCodedTest">
                 <methods>
-                    <include name="verifyUserIsLoggedInIncorrectPass" />
+                    <include name="verifyUserIsLoggedInIncorrectPass"/>
                 </methods>
             </class>
+            <class name="pageTests.SignInTest">
+                <methods>
+                    <include name="verifyErrorMessageAppearsForIncorrectUser"/>
+                    <include name="verifyInappropriateEmail"/>
+                </methods>
+            </class>
+
         </classes>
     </test>
 </suite>

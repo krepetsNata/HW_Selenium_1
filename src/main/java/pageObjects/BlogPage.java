@@ -4,13 +4,13 @@ import constants.NavigationLinks;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class BlogPage extends BasePage {
     private static final Logger LOG = Logger.getLogger(BlogPage.class);
+    private SoftAssert softAssert = new SoftAssert();
 
     @FindBy(xpath = "//div[contains(@class,'tab-nav__list')]//a")
     private List<WebElement> listNavigation;
@@ -37,7 +37,6 @@ public class BlogPage extends BasePage {
                 itemNav = false;
             }
         }
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(itemNav, "Text is not contained");
         softAssert.assertAll();
     }

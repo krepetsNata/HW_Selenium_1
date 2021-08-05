@@ -14,10 +14,10 @@ public class DataProviderEmailData {
     @DataProvider(name = "data_provider_domainname")
     public Object[][] dpMethod() {
         return new Object[][]{
-                {"test", "name.surname@mail.co"},
-                {"test", "name.surname@mail.com"},
-                {"test", "name.surname@mail.commmmmmm"},
-                {"test", "name.surname@mail.commmmmmmm"}};
+                {"name.surname@mail.co"},
+                {"name.surname@mail.com"},
+                {"name.surname@mail.commmmmmm"},
+                {"name.surname@mail.commmmmmmm"}};
     }
 
     @DataProvider(name = "data_provider_inappropriate_email")

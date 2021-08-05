@@ -42,7 +42,7 @@ public class SignInTest extends BaseTest {
     }
 
     @Test(dataProvider = "data_provider_domainname", dataProviderClass = DataProviderEmailData.class, description = "Verify count chars in email domain")
-    public void verifyDomainInEmail(String descr, String email) {
+    public void verifyDomainInEmail(String email) {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()

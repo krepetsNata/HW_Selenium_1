@@ -26,7 +26,7 @@ public class TrainingListTest extends BaseTest {
                 .verifyCheckbosIsChecked(SkillsItems.JAVA.getTextSkills());
 
         new TrainingListPage()
-                .verifyTitleTrainings(SkillsItems.JAVA.getTextSkills());//????!!! getText from element is empty
+                .verifyTitleTrainings(SkillsItems.JAVA.getTextSkills());
 
         new TrainingListPage()
                 .clickOnSkillsCheckBox(SkillsItems.JAVA.getTextSkills())
@@ -56,6 +56,6 @@ public class TrainingListTest extends BaseTest {
                 .clickOnByLocationsButton()
                 .clickOnCountry("Ukraine")
                 .clickOnCitiesCheckBox("Lviv")
-                .verifyCountryTrainings("Ukraine");//????!!! getText from element is empty
+                .verifyCountryTrainings("Ukraine");
     }
 }

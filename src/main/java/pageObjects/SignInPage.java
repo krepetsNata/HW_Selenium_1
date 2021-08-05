@@ -8,6 +8,7 @@ import org.testng.asserts.SoftAssert;
 
 public class SignInPage extends BasePage {
     private static final Logger LOG = Logger.getLogger(SignInPage.class);
+    private SoftAssert softAssert = new SoftAssert();
 
     @FindBy(id = "username")
     private WebElement mailInput;
@@ -66,13 +67,11 @@ public class SignInPage extends BasePage {
     }
 
     public void verifyContinueButtonEnabled() {
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(isContinueButtonEnabled(), "Spec Chars is allowed");
         softAssert.assertAll();
     }
 
     public void verifyContinueButtonDisabled() {
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertFalse(isContinueButtonEnabled(), "Email is inappropriate");
         softAssert.assertAll();
     }
