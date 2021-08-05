@@ -6,6 +6,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 public class BasePage {
     WebDriver driver;
 
@@ -15,8 +17,7 @@ public class BasePage {
     }
 
     public void waitForPageLoadComplete(long timeToWait) {
-        new WebDriverWait(DriverFactory.getDriver(), timeToWait).until(
-                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        DriverFactory.getDriver().manage().timeouts().pageLoadTimeout(timeToWait, TimeUnit.SECONDS);
     }
 
     public void waitVisibilityOfElement(long timeToWait, WebElement element) {
@@ -33,14 +34,4 @@ public class BasePage {
     void navigateToURL(final String url) {
         DriverFactory.getDriver().get(url);
     }
-
-
-//    private boolean existsElement(WebElement el, String xpath) {
-//        try {
-//            el.findElement(By.xpath(xpath));
-//        } catch (NoSuchElementException e) {
-//            return false;
-//        }
-//        return true;
-//    }
 }

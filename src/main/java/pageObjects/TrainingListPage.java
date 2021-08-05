@@ -195,7 +195,7 @@ public class TrainingListPage extends BasePage {
 
             for (WebElement el : getListTrainings()) {
                 WebElement elTitle = el.findElement(By.xpath("//div[contains(@class,'training-item__title')]"));
-                String elText = elTitle.getAttribute("innerText").trim();// getText() from element is empty
+                String elText = elTitle.getAttribute("textContent").trim();// getText() from element is empty
 
                 if (elText.contains(textTitleTraining)) {
                     flag = true;
@@ -217,7 +217,7 @@ public class TrainingListPage extends BasePage {
 
             for (WebElement el : getListTrainings()) {
                 WebElement elLocation = el.findElement(By.xpath("//*[contains(@class,'training-item__location--text')]"));
-                String elText = elLocation.getAttribute("innerText").trim();
+                String elText = elLocation.getAttribute("textContent").trim();
 
                 if (elText.equalsIgnoreCase(textCountryTraining)
                         || elText.equalsIgnoreCase("Multi-location")) {
