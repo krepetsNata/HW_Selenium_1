@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-public class SignInPage extends BasePage{
+public class SignInPage extends BasePage {
     private static final Logger LOG = Logger.getLogger(SignInPage.class);
 
     @FindBy(id = "username")
@@ -24,56 +24,56 @@ public class SignInPage extends BasePage{
     @FindBy(xpath = "//span[text()=\"We can't find user with such credentials.\"]")
     private WebElement loginFailedErrorMessage;
 
-    public SignInPage enterEmail(String email){
+    public SignInPage enterEmail(String email) {
         mailInput.sendKeys(email);
         LOG.info("Mail was entered.");
         return this;
     }
 
-    public SignInPage clickContinueButton(){
-        continueButton.click();
-        LOG.info("Continue button clicked.");
-        return this;
-    }
-
-    public SignInPage enterPassword(String password){
+    public SignInPage enterPassword(String password) {
         passwordInput.sendKeys(password);
         LOG.info("Password was entered.");
         return this;
     }
 
-    public HomePage clickSignInButton(){
-        waitElementToBeClickable(10,signInButton).click();
+    public SignInPage clickContinueButton() {
+        continueButton.click();
+        LOG.info("Continue button clicked.");
+        return this;
+    }
+
+    public HomePage clickSignInButton() {
+        waitElementToBeClickable(10, signInButton).click();
         LOG.info("Sign in button clicked.");
         return new HomePage();
     }
 
     public boolean isContinueButtonEnabled() {
-        boolean isDisplayed = continueButton.isEnabled();
-        LOG.info(String.format("Is 'Continue' button enabled': '%s'",isDisplayed));
-        return isDisplayed;
+        boolean isEnabled = continueButton.isEnabled();
+        LOG.info(String.format("Is 'Continue' button enabled': '%s'", isEnabled));
+        return isEnabled;
     }
 
     public boolean isLoginFailedErrorMessageDisplayed() {
         boolean isDisplayed = loginFailedErrorMessage.isDisplayed();
-        LOG.info(String.format("Is 'Login Failed' error message displayed': '%s'",isDisplayed));
+        LOG.info(String.format("Is 'Login Failed' error message displayed': '%s'", isDisplayed));
         return isDisplayed;
     }
 
-    public void verifyFailedLoginErrorMessageDisplayed(){
+    public void verifyFailedLoginErrorMessageDisplayed() {
         Assert.assertTrue(isLoginFailedErrorMessageDisplayed(),
                 "'Login failed' error message is not displayed");
     }
 
-    public void verifyContinueButtonEnabled(){
+    public void verifyContinueButtonEnabled() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(isContinueButtonEnabled(),"Spec Chars is allowed");
+        softAssert.assertTrue(isContinueButtonEnabled(), "Spec Chars is allowed");
         softAssert.assertAll();
     }
 
-    public void verifyContinueButtonDisabled(){
+    public void verifyContinueButtonDisabled() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertFalse(isContinueButtonEnabled(),"Email is inappropriate");
+        softAssert.assertFalse(isContinueButtonEnabled(), "Email is inappropriate");
         softAssert.assertAll();
     }
 }

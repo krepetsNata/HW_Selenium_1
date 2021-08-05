@@ -18,11 +18,22 @@ public class SignInTest extends BaseTest {
                 .clickSignInButton();
         new SignInPage()
                 .verifyFailedLoginErrorMessageDisplayed();
+    }
 
+    @Test(description = "Verify user is successfully logged in with appropriate credentials")
+    public void verifyUserSuccessfullyLogIn() {
+        new HomePage()
+                .proceedToHomePage()
+                .clickSignInButton()
+                .enterEmail("ivanhorintest@gmail.com")
+                .clickContinueButton()
+                .enterPassword("ivanhorintestPassword")
+                .clickSignInButton()
+                .verifyUserIsLoggedIn();
     }
 
     @Test(description = "Verify that special characters (%+-_) and digits are allowed")
-    public void verifySpecCharsInEmail(){
+    public void verifySpecCharsInEmail() {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()
@@ -31,7 +42,7 @@ public class SignInTest extends BaseTest {
     }
 
     @Test(dataProvider = "data_provider_domainname", dataProviderClass = DataProviderEmailData.class, description = "Verify count chars in email domain")
-    public void verifyDomainInEmail(String email){
+    public void verifyDomainInEmail(String descr, String email) {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()
@@ -40,7 +51,7 @@ public class SignInTest extends BaseTest {
     }
 
     @Test(dataProvider = "data_provider_inappropriate_email", dataProviderClass = DataProviderEmailData.class, description = "Verify count chars in email domain")
-    public void verifyInappropriateEmail(String email){
+    public void verifyInappropriateEmail(String email) {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()

@@ -2,43 +2,35 @@ package dataProviders;
 
 import org.testng.annotations.DataProvider;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class DataProviderEmailData {
-    @DataProvider(name = "data_provider_domainname")
-    public Object[][] dpMethod(){
-        return new Object[][] {
-                {"name.surname@mail.co"},
-                {"name.surname@mail.com"},
-                {"name.surname@mail.commmmmmm"},
-                {"name.surname@mail.commmmmmmm"},};
-    }
-
 
     final static String CSV_FILE = "src/test/java/dataProviders/inappropriate_emails.csv";
-    final static String DELIMETER = ",";
 
-    @DataProvider(name = "data_provider_inappropriate_email")
-    public Iterator<Object[]> testDP(){
-        try {
-            Scanner scanner = new Scanner(new File(CSV_FILE)).useDelimiter(DELIMETER);
-            return new Iterator<Object[]>() {
-                @Override
-                public boolean hasNext() {
-                    return scanner.hasNext();
-                }
-                @Override
-                public Object[] next() {
-                    return new Object[]{scanner.next()};
-                }
-            };
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
+    @DataProvider(name = "data_provider_domainname")
+    public Object[][] dpMethod() {
+        return new Object[][]{
+                {"test", "name.surname@mail.co"},
+                {"test", "name.surname@mail.com"},
+                {"test", "name.surname@mail.commmmmmm"},
+                {"test", "name.surname@mail.commmmmmmm"}};
     }
 
+    @DataProvider(name = "data_provider_inappropriate_email")
+    public Object[][] dpReadFile() throws IOException { //A TestNG DataProvider must return either Object[][] or Iterator<Object[]>
+        List<String> result = Files.readAllLines(Paths.get(CSV_FILE));
+        Object[][] objArray = new Object[result.size()][];
+
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = 0; j < 1; j++) {
+                objArray[i] = new Object[1];
+                objArray[i][j] = result.get(i);
+            }
+        }
+        return objArray;
+    }
 }

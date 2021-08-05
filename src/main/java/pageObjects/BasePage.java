@@ -1,23 +1,17 @@
 package pageObjects;
 
 import driver.DriverFactory;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
 public class BasePage {
-    //private static WebDriverWait waiter =  new WebDriverWait(DriverFactory.getDriver(), 10);
-
-        WebDriver driver;
+    WebDriver driver;
 
     public BasePage() {
-            driver = DriverFactory.getDriver();
-            PageFactory.initElements(driver, this);
+        driver = DriverFactory.getDriver();
+        PageFactory.initElements(driver, this);
     }
 
     public void waitForPageLoadComplete(long timeToWait) {
@@ -36,8 +30,17 @@ public class BasePage {
         return element;
     }
 
-    void  navigateToURL(final String url) {
+    void navigateToURL(final String url) {
         DriverFactory.getDriver().get(url);
     }
 
+
+//    private boolean existsElement(WebElement el, String xpath) {
+//        try {
+//            el.findElement(By.xpath(xpath));
+//        } catch (NoSuchElementException e) {
+//            return false;
+//        }
+//        return true;
+//    }
 }
