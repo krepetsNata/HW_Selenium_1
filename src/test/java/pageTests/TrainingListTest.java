@@ -1,5 +1,6 @@
 package pageTests;
 
+import constants.Credentials;
 import constants.SkillsItems;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
@@ -7,14 +8,14 @@ import pageObjects.TrainingListPage;
 
 public class TrainingListTest extends BaseTest {
 
-    @Test
+    @Test(priority = 0, description = "Verify checked courses in titles of trainings array(Java and Ruby).")
     public void searchInSkills() {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()
-                .enterEmail("ivanhorintest@gmail.com")
+                .enterEmail(Credentials.CORRECT_CRED.getEmail())
                 .clickContinueButton()
-                .enterPassword("ivanhorintestPassword")
+                .enterPassword(Credentials.CORRECT_CRED.getPassword())
                 .clickSignInButton()
                 .clickTrainingListButton();
 
@@ -22,32 +23,30 @@ public class TrainingListTest extends BaseTest {
                 .clickOnClearLocationsSpan()
                 .clickOnSearchInput()
                 .clickOnBySkillsButton()
-                .clickOnSkillsCheckBox(SkillsItems.JAVA.getTextSkills())
-                .verifyCheckbosIsChecked(SkillsItems.JAVA.getTextSkills());
+                .clickOnSkillsCheckBox(SkillsItems.JAVA.getTextSkill())
+                .verifyCheckbosIsChecked(SkillsItems.JAVA.getTextSkill())
+                .verifyTitleTrainings(SkillsItems.JAVA.getTextSkill())
 
-        new TrainingListPage()
-                .verifyTitleTrainings(SkillsItems.JAVA.getTextSkills());
-
-        new TrainingListPage()
-                .clickOnSkillsCheckBox(SkillsItems.JAVA.getTextSkills())
-                .verifyCheckbosIsUnhecked(SkillsItems.JAVA.getTextSkills());
-
-        new TrainingListPage()
-                .clickOnSkillsCheckBox(SkillsItems.RUBY.getTextSkills())
-                .verifyCheckbosIsChecked(SkillsItems.RUBY.getTextSkills());
-
-        new TrainingListPage()
+                .clickOnSkillsCheckBox(SkillsItems.JAVA.getTextSkill())
+                .verifyCheckbosIsUnhecked(SkillsItems.JAVA.getTextSkill())
+                .clickOnSkillsCheckBox(SkillsItems.RUBY.getTextSkill())
+                .verifyCheckbosIsChecked(SkillsItems.RUBY.getTextSkill())
                 .verifyTrainingsIsEmpty();
+
+        //for running whole class
+        new HomePage()
+                .clickProfileArrowButton()
+                .clickLogOutButton();
     }
 
-    @Test
+    @Test(priority = 1, description = "Verify selected locations in cards of trainings array.")
     public void searchInLocations() {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()
-                .enterEmail("ivanhorintest@gmail.com")
+                .enterEmail(Credentials.CORRECT_CRED.getEmail())
                 .clickContinueButton()
-                .enterPassword("ivanhorintestPassword")
+                .enterPassword(Credentials.CORRECT_CRED.getPassword())
                 .clickSignInButton()
                 .clickTrainingListButton();
         new TrainingListPage()
@@ -57,5 +56,63 @@ public class TrainingListTest extends BaseTest {
                 .clickOnCountry("Ukraine")
                 .clickOnCitiesCheckBox("Lviv")
                 .verifyCountryTrainings("Ukraine");
+
+        //for running whole class
+        new HomePage()
+                .clickProfileArrowButton()
+                .clickLogOutButton();
+    }
+
+
+
+
+    @Test(priority = 2, description = "Verify checked courses in titles of trainings array(Java).")
+    public void searchInJavaSkills() {
+        new HomePage()
+                .proceedToHomePage()
+                .clickSignInButton()
+                .enterEmail(Credentials.CORRECT_CRED.getEmail())
+                .clickContinueButton()
+                .enterPassword(Credentials.CORRECT_CRED.getPassword())
+                .clickSignInButton()
+                .clickTrainingListButton();
+
+        new TrainingListPage()
+                .clickOnClearLocationsSpan()
+                .clickOnSearchInput()
+                .clickOnBySkillsButton()
+                .clickOnSkillsCheckBox(SkillsItems.JAVA.getTextSkill())
+                .verifyCheckbosIsChecked(SkillsItems.JAVA.getTextSkill())
+                .verifyTitleTrainings(SkillsItems.JAVA.getTextSkill());
+
+        //for running whole class
+        new HomePage()
+                .clickProfileArrowButton()
+                .clickLogOutButton();
+    }
+
+    @Test(priority = 3, description = "Verify checked courses in titles of trainings array(Ruby).")
+    public void searchInRubySkills() {
+        new HomePage()
+                .proceedToHomePage()
+                .clickSignInButton()
+                .enterEmail(Credentials.CORRECT_CRED.getEmail())
+                .clickContinueButton()
+                .enterPassword(Credentials.CORRECT_CRED.getPassword())
+                .clickSignInButton()
+                .clickTrainingListButton();
+
+        new TrainingListPage()
+                .clickOnClearLocationsSpan()
+                .clickOnSearchInput()
+                .clickOnBySkillsButton()
+                .clickOnSkillsCheckBox(SkillsItems.RUBY.getTextSkill())
+                .verifyCheckbosIsChecked(SkillsItems.RUBY.getTextSkill())
+                .verifyTrainingsIsEmpty();
+
+        //for running whole class
+        new HomePage()
+                .clickProfileArrowButton()
+                .clickLogOutButton();
     }
 }

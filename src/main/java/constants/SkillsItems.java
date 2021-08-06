@@ -4,13 +4,13 @@ public enum SkillsItems {
     JAVA("Java"),
     RUBY("Ruby");
 
-    private String textSkills;
+    private String textSkill;
 
-    SkillsItems(String textSkills) {
-        this.textSkills = textSkills;
+    SkillsItems(String textSkill) {
+        this.textSkill = textSkill;
     }
 
-    public String getTextSkills() {
-        return textSkills;
+    public String getTextSkill() {
+        return textSkill;
     }
 }

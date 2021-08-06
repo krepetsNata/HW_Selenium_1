@@ -1,6 +1,7 @@
 package pageObjects;
 
-import constants.Configuration;
+import org.openqa.selenium.JavascriptExecutor;
+import utils.ConfigurationPropertiesFromFile;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,21 +23,39 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//ul[@class='main-nav__list']//a[contains(@class,'news')]")
     private WebElement blogButton;
 
-    public String getLoggedInUserName() {
-        return topRightCornerUserNameElement.getText();
-    }
+    @FindBy(xpath = "//div[@class='dropdown user-info']//a[@class='user-info dropdown-toggle']")
+    private WebElement profileArrow;
+
+    @FindBy(xpath = "//a[@href='/Auth/LogoutExt']")
+    private WebElement logoutLink;
 
     public HomePage proceedToHomePage() {
-        navigateToURL(Configuration.getProperty("business.home_page_url"));
-        LOG.info(String.format("Proceeded to '%s' URL.", Configuration.getProperty("business.home_page_url")));
+        navigateToURL(ConfigurationPropertiesFromFile.getProperty("business.home_page_url"));
+        LOG.info(String.format("Proceeded to '%s' URL.", ConfigurationPropertiesFromFile.getProperty("business.home_page_url")));
         return this;
     }
 
     public SignInPage clickSignInButton() {
-        waitForPageLoadComplete(25);
+        waitForPageLoadComplete(30);
         waitElementToBeClickable(10, signInButton).click();
-        LOG.info("'Sign in' button clicked");
+        LOG.info("'Sign in' button was clicked");
         return new SignInPage();
+    }
+
+    public HomePage clickProfileArrowButton() {
+        //profileArrow.click(); //ElementNotInteractableException: element not interactable
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", profileArrow);
+        LOG.info("'Profile arrow' button was clicked");
+        return new HomePage();
+    }
+
+    public HomePage clickLogOutButton() {
+        //logoutLink.click();//ElementNotInteractableException: element not interactable
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", logoutLink);
+        LOG.info("'Log Out' button was clicked");
+        return new HomePage();
     }
 
     public TrainingListPage clickTrainingListButton() {
@@ -57,8 +76,9 @@ public class HomePage extends BasePage {
         return isDisplayed;
     }
 
-    public void verifyUserIsLoggedIn() {
+    public HomePage verifyUserIsLoggedIn() {
         Assert.assertTrue(isUserNameDisplayed(), "User is not logged in");
+        return this;
     }
 
 }

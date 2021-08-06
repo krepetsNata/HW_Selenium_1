@@ -50,20 +50,21 @@ public class SignInPage extends BasePage {
     }
 
     public boolean isContinueButtonEnabled() {
+        waitVisibilityOfElement(10, continueButton);
         boolean isEnabled = continueButton.isEnabled();
         LOG.info(String.format("Is 'Continue' button enabled': '%s'", isEnabled));
         return isEnabled;
     }
 
     public boolean isLoginFailedErrorMessageDisplayed() {
+        waitVisibilityOfElement(10,loginFailedErrorMessage);
         boolean isDisplayed = loginFailedErrorMessage.isDisplayed();
         LOG.info(String.format("Is 'Login Failed' error message displayed': '%s'", isDisplayed));
         return isDisplayed;
     }
 
     public void verifyFailedLoginErrorMessageDisplayed() {
-        Assert.assertTrue(isLoginFailedErrorMessageDisplayed(),
-                "'Login failed' error message is not displayed");
+        Assert.assertTrue(isLoginFailedErrorMessageDisplayed(),"'Login failed' error message is not displayed");
     }
 
     public void verifyContinueButtonEnabled() {

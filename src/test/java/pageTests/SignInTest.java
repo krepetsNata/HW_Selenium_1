@@ -1,5 +1,6 @@
 package pageTests;
 
+import constants.Credentials;
 import dataProviders.DataProviderEmailData;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
@@ -12,9 +13,9 @@ public class SignInTest extends BaseTest {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()
-                .enterEmail("incorrectmail@gmail.com")
+                .enterEmail(Credentials.INCORRECT_CRED.getEmail())
                 .clickContinueButton()
-                .enterPassword("incorrectPassword")
+                .enterPassword(Credentials.INCORRECT_CRED.getPassword())
                 .clickSignInButton();
         new SignInPage()
                 .verifyFailedLoginErrorMessageDisplayed();
@@ -25,9 +26,9 @@ public class SignInTest extends BaseTest {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()
-                .enterEmail("ivanhorintest@gmail.com")
+                .enterEmail(Credentials.CORRECT_CRED.getEmail())
                 .clickContinueButton()
-                .enterPassword("ivanhorintestPassword")
+                .enterPassword(Credentials.CORRECT_CRED.getPassword())
                 .clickSignInButton()
                 .verifyUserIsLoggedIn();
     }
@@ -41,7 +42,8 @@ public class SignInTest extends BaseTest {
                 .verifyContinueButtonEnabled();
     }
 
-    @Test(dataProvider = "data_provider_domainname", dataProviderClass = DataProviderEmailData.class, description = "Verify count chars in email domain")
+    @Test(dataProvider = "data_provider_domainname", dataProviderClass = DataProviderEmailData.class,
+            description = "Verify count chars in email domain")
     public void verifyDomainInEmail(String email) {
         new HomePage()
                 .proceedToHomePage()
@@ -50,7 +52,8 @@ public class SignInTest extends BaseTest {
                 .verifyContinueButtonEnabled();
     }
 
-    @Test(dataProvider = "data_provider_inappropriate_email", dataProviderClass = DataProviderEmailData.class, description = "Verify count chars in email domain")
+    @Test(dataProvider = "data_provider_inappropriate_email", dataProviderClass = DataProviderEmailData.class,
+            description = "Verify count chars in email domain")
     public void verifyInappropriateEmail(String email) {
         new HomePage()
                 .proceedToHomePage()

@@ -13,7 +13,7 @@ public class BaseTest {
     @Parameters({"browserName"})
     @BeforeMethod(alwaysRun = true)
     public void beforeMethod(@Optional(value = "webdriver.chrome.driver") final String browserName, Method method) {
-        DriverFactory.initDriver(browserName);
+        DriverFactory.getInstanceOfDriverFactory(browserName);
         test = method.getAnnotation(Test.class);
         LOG.info(String.format("Test '%s' started.", method.getName()));
     }

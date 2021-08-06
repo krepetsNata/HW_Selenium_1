@@ -18,26 +18,20 @@ public class BlogPage extends BasePage {
     public List<WebElement> getListNavigation() {
         if (listNavigation.isEmpty()) {
             LOG.warn("List is empty");
-            return null;
+            //return null;
         }
         return listNavigation;
     }
 
-    public void verifyListContainsText() {
-        boolean itemNav = false;
-        NavigationLinks[] vals = NavigationLinks.values();
+    public BlogPage verifyListContainsText() {
+        NavigationLinks[] navigationLinksValues = NavigationLinks.values();
 
         for (int i = 0; i < getListNavigation().size(); i++) {
-            NavigationLinks nl = vals[i];
-            String s = getListNavigation().get(i).getText();
-
-            if (getListNavigation().get(i).getText().equalsIgnoreCase(nl.getTextLinks())) {
-                itemNav = true;
-            } else {
-                itemNav = false;
-            }
+            NavigationLinks navigationLinks = navigationLinksValues[i];
+            String navigationLinksText = getListNavigation().get(i).getText();
+            softAssert.assertTrue(navigationLinksText.equalsIgnoreCase(navigationLinks.getTextLink()), "Text is not contained");
         }
-        softAssert.assertTrue(itemNav, "Text is not contained");
-        softAssert.assertAll();
+         softAssert.assertAll();
+        return this;
     }
 }

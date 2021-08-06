@@ -8,13 +8,13 @@ public enum NavigationLinks {
     SOFT_SKILLS("Soft Skills"),
     EVENTS("Events");
 
-    private String textLinks;
+    private String textLink;
 
-    NavigationLinks(String textLinks) {
-        this.textLinks = textLinks;
+    NavigationLinks(String textLink) {
+        this.textLink = textLink;
     }
 
-    public String getTextLinks() {
-        return textLinks;
+    public String getTextLink() {
+        return textLink;
     }
 }

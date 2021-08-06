@@ -1,19 +1,20 @@
 package pageTests;
 
+import constants.Credentials;
 import org.testng.annotations.Test;
 import pageObjects.BlogPage;
 import pageObjects.HomePage;
 
 public class BlogTest extends BaseTest {
 
-    @Test
+    @Test(description = "Verify text links.")
     public void verifyingLinks() {
         new HomePage()
                 .proceedToHomePage()
                 .clickSignInButton()
-                .enterEmail("ivanhorintest@gmail.com")
+                .enterEmail(Credentials.CORRECT_CRED.getEmail())
                 .clickContinueButton()
-                .enterPassword("ivanhorintestPassword")
+                .enterPassword(Credentials.CORRECT_CRED.getPassword())
                 .clickSignInButton()
                 .clickBlogButton();
         new BlogPage()
